@@ -1,1 +1,14 @@
 # Starter YAML config
+policies:
+  - id: secrets-no-leak
+    match_regex:
+      - "AKIA[0-9A-Z]{16}"           # AWS Access Key pattern
+      - "xoxb-[0-9A-Za-z-]{24,}"     # Slack bot token-like
+    phase: ["post"]
+    action: "BLOCK"
+
+  - id: pii-email-detect
+    match_regex:
+      - "[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}"
+    phase: ["pre", "post"]
+    action: "WARN"

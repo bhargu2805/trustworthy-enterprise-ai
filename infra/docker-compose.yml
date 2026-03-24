@@ -1,1 +1,28 @@
 # Starter YAML config
+services:
+  api:
+    build:
+      context: ../apps/gateway
+    environment:
+      - APP_ENV=dev
+      - PYTHONPATH=/app:/app/packages
+      - POLICY_PATH=/app/policies/policy.yaml
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../apps/gateway:/app
+      - ../packages/compliance:/app/packages/compliance:ro
+      - ../packages/retriever:/app/packages/retriever:ro
+      - ../packages/compliance/policy.yaml:/app/policies/policy.yaml:ro
+    command: ["uvicorn","main:app","--host","0.0.0.0","--port","8000","--reload"]
+
+  web:
+    build:
+      context: ../apps/dashboard
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../apps/dashboard:/usr/src/app
+    environment:
+      - NODE_ENV=development
+    command: ["npm","run","dev","--","--host"]

@@ -10,3 +10,7 @@ coverage/
 .env
 .DS_Store
 
+apps/gateway/data/
+*.faiss
+*.meta
+apps/gateway/.venv/

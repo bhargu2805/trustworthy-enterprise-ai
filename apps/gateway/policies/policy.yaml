@@ -1,0 +1,24 @@
+policies:
+  - id: secrets-no-leak
+    match_regex:
+      - "AKIA[0-9A-Z]{16}"
+      - "xoxb-[0-9A-Za-z-]{24,}"
+      - "sk-[a-zA-Z0-9]{32,}"
+    phase: ["pre", "post"]
+    action: "BLOCK"
+
+  - id: pii-email-detect
+    match_regex:
+      - "[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}"
+    phase: ["pre", "post"]
+    action: "BLOCK"
+
+  - id: prompt-injection
+    match:
+      - "ignore previous instructions"
+      - "disregard your instructions"
+      - "you are now"
+      - "forget your training"
+      - "jailbreak"
+    phase: ["pre"]
+    action: "BLOCK"
