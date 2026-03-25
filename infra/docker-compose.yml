@@ -13,7 +13,8 @@ services:
       - ../apps/gateway:/app
       - ../packages/compliance:/app/packages/compliance:ro
       - ../packages/retriever:/app/packages/retriever:ro
-      - ../packages/compliance/policy.yaml:/app/policies/policy.yaml:ro
+      - ../apps/gateway/policies/policy.yaml:/app/policies/policy.yaml:ro
+      - ../apps/gateway/data:/app/data
     command: ["uvicorn","main:app","--host","0.0.0.0","--port","8000","--reload"]
 
   web:
