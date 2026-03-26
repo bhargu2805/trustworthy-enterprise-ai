@@ -1,4 +1,3 @@
-# Starter YAML config
 services:
   api:
     build:
@@ -16,14 +15,3 @@ services:
       - ../apps/gateway/policies/policy.yaml:/app/policies/policy.yaml:ro
       - ../apps/gateway/data:/app/data
     command: ["uvicorn","main:app","--host","0.0.0.0","--port","8000","--reload"]
-
-  web:
-    build:
-      context: ../apps/dashboard
-    ports:
-      - "5173:5173"
-    volumes:
-      - ../apps/dashboard:/usr/src/app
-    environment:
-      - NODE_ENV=development
-    command: ["npm","run","dev","--","--host"]
