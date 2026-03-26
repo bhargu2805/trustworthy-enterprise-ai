@@ -17,6 +17,19 @@ Upload any document, ask questions about it, and get accurate answers grounded i
 
 ---
 
+## Screenshots
+
+**Standard RAG — answering questions with source citations**
+![RAG Answer](docs/screenshots/rag_answer.png)
+
+**Compliant RAG — PII and prompt injection blocked instantly**
+![Compliance Blocked](docs/screenshots/compliance_blocked.png)
+
+**Standard mode — same query passes through without compliance check**
+![Standard Mode](docs/screenshots/standard_mode.png)
+
+---
+
 ## Architecture
 
 ```
